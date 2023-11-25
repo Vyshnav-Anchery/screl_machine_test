@@ -21,13 +21,13 @@ class UserDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(children: [
-                const Text("User Name : "),
-                Text(userDetails.name),
+                const Text("User id : "),
+                Text(userDetails.id.toString()),
               ]),
               const SizedBox(height: 40),
               Row(children: [
-                const Text("User id : "),
-                Text(userDetails.id.toString()),
+                const Text("User Name : "),
+                Text(userDetails.name),
               ]),
               const SizedBox(height: 40),
               Row(children: [
@@ -37,7 +37,11 @@ class UserDetails extends StatelessWidget {
               const SizedBox(height: 40),
               Row(children: [
                 const Text("User address : "),
-                Text(userDetails.address),
+                Text(
+                  userDetails.address,
+                  maxLines: 2,
+                  softWrap: true,
+                ),
               ]),
               const SizedBox(height: 40),
               Row(children: [
