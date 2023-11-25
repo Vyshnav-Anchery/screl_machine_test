@@ -1,0 +1,6 @@
+package com.example.screl_machine_test
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
