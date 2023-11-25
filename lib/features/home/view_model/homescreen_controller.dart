@@ -24,17 +24,29 @@ class HomeScreenController extends ChangeNotifier {
       required BuildContext context}) {
     if (formKey.currentState!.validate()) {
       int userId = int.parse(id);
-      userBox.add(UserModel(
-          id: userId,
-          name: name,
-          email: email,
-          address: address,
-          createdAt: createdAt.toString()));
-      scaffoldMessengerKey.currentState!
-          .showSnackBar(const SnackBar(content: Text("User added")));
-      nameEditingController.clear();
-      Navigator.pop(context);
-      formKey.currentState!.reset();
+      if (userBox.containsKey(userId)) {
+        scaffoldMessengerKey.currentState!.showSnackBar(
+            const SnackBar(content: Text("Userid Already Exists")));
+        Navigator.pop(context);
+      } else {
+        userBox.put(
+            userId,
+            UserModel(
+                id: userId,
+                name: name,
+                email: email,
+                address: address,
+                createdAt: createdAt.toString()));
+        scaffoldMessengerKey.currentState!
+            .showSnackBar(const SnackBar(content: Text("User added")));
+        nameEditingController.clear();
+        Navigator.pop(context);
+        formKey.currentState!.reset();
+      }
     }
+  }
+
+  deleteFromDatabase(int id) {
+    userBox.delete(id);
   }
 }
