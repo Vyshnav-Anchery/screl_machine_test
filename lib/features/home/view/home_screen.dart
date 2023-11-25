@@ -5,6 +5,7 @@ import 'package:screl_machine_test/features/home/model/user_model.dart';
 import 'package:screl_machine_test/features/home/view/widgets/floating_add_button.dart';
 import 'package:screl_machine_test/features/home/view_model/homescreen_controller.dart';
 import 'package:screl_machine_test/features/user_details/view/user_details.dart';
+import 'package:screl_machine_test/utils/common%20widgets/text_buttons.dart';
 import 'package:screl_machine_test/utils/hive_box.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,8 +49,28 @@ class HomeScreen extends StatelessWidget {
                             subtitle: Text(userDetails.email),
                             trailing: IconButton(
                                 onPressed: () {
-                                  homeScreenController
-                                      .deleteFromDatabase(userDetails.id);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                        title: const Text("Confirm deletion"),
+                                        content: Text(
+                                            "Delte ther user? ${userDetails.name}"),
+                                        actions: [
+                                          CustomTextButton(
+                                              function: () {
+                                                Navigator.pop(context);
+                                              },
+                                              text: "Cancel"),
+                                          CustomTextButton(
+                                              function: () {
+                                                homeScreenController
+                                                    .deleteFromDatabase(
+                                                        userDetails.id,
+                                                        context);
+                                              },
+                                              text: "Confirm"),
+                                        ]),
+                                  );
                                 },
                                 icon: const Icon(Icons.delete)),
                           );

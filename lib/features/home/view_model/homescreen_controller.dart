@@ -46,7 +46,10 @@ class HomeScreenController extends ChangeNotifier {
     }
   }
 
-  deleteFromDatabase(int id) {
+  deleteFromDatabase(int id, BuildContext context) {
     userBox.delete(id);
+    scaffoldMessengerKey.currentState!
+        .showSnackBar(const SnackBar(content: Text("User deleted")));
+    Navigator.pop(context);
   }
 }
