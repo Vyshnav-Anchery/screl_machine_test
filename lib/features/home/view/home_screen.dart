@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                                     builder: (context) => AlertDialog(
                                         title: const Text("Confirm deletion"),
                                         content: Text(
-                                            "Delte ther user? ${userDetails.name}"),
+                                            "Delte ther user? \n user name:${userDetails.name}"),
                                         actions: [
                                           CustomTextButton(
                                               function: () {
